@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Медицина будущего 2026 — Прогресс</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #F0F2F7; color: #1A1F36; min-height: 100vh; }
+
+.page { max-width: 960px; margin: 0 auto; padding: 32px 24px 80px; }
+
+/* HEADER */
+.header { background: #0F1F3D; border-radius: 20px; padding: 36px 40px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center; }
+.header-left h1 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.header-left p { font-size: 15px; color: rgba(255,255,255,0.55); }
+.header-right { text-align: right; }
+.date-badge { background: rgba(200,169,110,0.15); border: 1px solid rgba(200,169,110,0.4); color: #C8A96E; font-size: 13px; font-weight: 500; padding: 6px 16px; border-radius: 30px; display: inline-block; margin-bottom: 8px; }
+.update { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+/* SECTION TITLE */
+.section-title { font-size: 13px; font-weight: 600; color: #8A91A8; text-transform: uppercase; letter-spacing: 0.08em; margin: 32px 0 14px; }
+
+/* BIG KPI CARDS */
+.kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+.kpi { background: #fff; border-radius: 16px; padding: 24px 28px; box-shadow: 0 2px 12px rgba(15,31,61,0.06); }
+.kpi-icon { font-size: 28px; margin-bottom: 14px; }
+.kpi-num { font-size: 48px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+.kpi-num.green { color: #1B7A4A; }
+.kpi-num.blue { color: #1B4F8A; }
+.kpi-num.orange { color: #C55A11; }
+.kpi-label { font-size: 14px; color: #8A91A8; font-weight: 500; }
+.kpi-sub { font-size: 12px; color: #B0B7C8; margin-top: 4px; }
+
+/* PROGRESS SECTION */
+.progress-card { background: #fff; border-radius: 16px; padding: 28px 32px; box-shadow: 0 2px 12px rgba(15,31,61,0.06); margin-bottom: 14px; }
+.progress-card h3 { font-size: 15px; font-weight: 600; color: #1A1F36; margin-bottom: 20px; }
+
+.region-row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.region-row:last-child { margin-bottom: 0; }
+.region-name { font-size: 14px; font-weight: 500; color: #1A1F36; min-width: 90px; }
+.region-bar-wrap { flex: 1; background: #F0F2F7; border-radius: 8px; height: 10px; overflow: hidden; }
+.region-bar { height: 100%; border-radius: 8px; }
+.region-stats { font-size: 13px; color: #8A91A8; min-width: 120px; text-align: right; }
+.region-stats strong { color: #1A1F36; }
+
+/* CONFIRMED SECTION */
+.confirmed-card { background: #fff; border-radius: 16px; padding: 28px 32px; box-shadow: 0 2px 12px rgba(15,31,61,0.06); }
+.confirmed-card h3 { font-size: 15px; font-weight: 600; color: #1A1F36; margin-bottom: 20px; }
+.countries-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.country-block { background: #F8F9FC; border-radius: 12px; padding: 16px; }
+.country-flag-name { font-size: 14px; font-weight: 600; color: #1A1F36; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.uni-item { font-size: 12px; color: #4A5369; padding: 4px 0; border-bottom: 1px solid #EAECF4; line-height: 1.4; display: flex; align-items: flex-start; gap: 6px; }
+.uni-item:last-child { border-bottom: none; }
+.uni-dot { width: 5px; height: 5px; border-radius: 50%; background: #1B7A4A; flex-shrink: 0; margin-top: 5px; }
+
+/* TODAY SECTION */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.today-card { background: #fff; border-radius: 16px; padding: 28px 32px; box-shadow: 0 2px 12px rgba(15,31,61,0.06); }
+.today-card h3 { font-size: 15px; font-weight: 600; color: #1A1F36; margin-bottom: 18px; }
+.today-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid #F0F2F7; }
+.today-item:last-child { border-bottom: none; }
+.today-num { width: 28px; height: 28px; border-radius: 8px; background: #F0F2F7; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #1A1F36; flex-shrink: 0; }
+.today-text { font-size: 13px; color: #4A5369; line-height: 1.5; padding-top: 4px; }
+.today-text strong { color: #1A1F36; }
+
+/* NEXT STEPS */
+.next-card { background: #0F1F3D; border-radius: 16px; padding: 28px 32px; }
+.next-card h3 { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 18px; }
+.next-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.next-item:last-child { border-bottom: none; }
+.next-tag { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; flex-shrink: 0; margin-top: 2px; }
+.tag-hot { background: rgba(220,50,50,0.2); color: #FF7070; }
+.tag-plan { background: rgba(59,130,246,0.2); color: #7BB3FF; }
+.next-text { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+/* CHANNELS ROW */
+.channels-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.channel-card { background: #fff; border-radius: 14px; padding: 18px 16px; text-align: center; box-shadow: 0 2px 12px rgba(15,31,61,0.06); }
+.channel-icon { font-size: 22px; margin-bottom: 8px; }
+.channel-num { font-size: 26px; font-weight: 700; color: #1A1F36; }
+.channel-label { font-size: 11px; color: #8A91A8; margin-top: 3px; font-weight: 500; }
+
+/* FOOTER */
+.footer { text-align: center; margin-top: 48px; font-size: 12px; color: #B0B7C8; }
+
+@media (max-width: 680px) {
+  .kpi-row { grid-template-columns: 1fr; }
+  .countries-grid { grid-template-columns: 1fr 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .channels-row { grid-template-columns: repeat(3, 1fr); }
+  .header { flex-direction: column; gap: 16px; }
+  .header-right { text-align: left; }
+  .kpi-num { font-size: 36px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Медицина будущего 2026</h1>
+      <p>Международная олимпиада медицинских вузов · Central Asian University</p>
+    </div>
+    <div class="header-right">
+      <div class="date-badge">31 октября — 3 ноября 2026</div>
+      <div class="update">Обновлено: 03.06.2026</div>
+    </div>
+  </div>
+
+  <!-- MAIN KPIs -->
+  <div class="section-title">Общий прогресс</div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-icon">✅</div>
+      <div class="kpi-num green">37</div>
+      <div class="kpi-label">Подтвердили участие</div>
+      <div class="kpi-sub">команд из 11 стран · 36 вузов</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon">📨</div>
+      <div class="kpi-num blue">363</div>
+      <div class="kpi-label">Охвачено университетов</div>
+      <div class="kpi-sub">по всему миру</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon">⏳</div>
+      <div class="kpi-num orange">38</div>
+      <div class="kpi-label">Ожидаем ответа</div>
+      <div class="kpi-sub">уже проявили интерес</div>
+    </div>
+  </div>
+
+  <!-- REGION PROGRESS -->
+  <div class="progress-card">
+    <h3>Охват по регионам</h3>
+    <div class="region-row">
+      <div class="region-name">🌍 СНГ</div>
+      <div class="region-bar-wrap"><div class="region-bar" style="width:75%; background:#1B7A4A;"></div></div>
+      <div class="region-stats"><strong>9 подтверждено</strong> из 48</div>
+    </div>
+    <div class="region-row">
+      <div class="region-name">🌍 Европа</div>
+      <div class="region-bar-wrap"><div class="region-bar" style="width:30%; background:#1B4F8A;"></div></div>
+      <div class="region-stats"><strong>50+ писем</strong> из 165</div>
+    </div>
+    <div class="region-row">
+      <div class="region-name">🌏 Азия</div>
+      <div class="region-bar-wrap"><div class="region-bar" style="width:46%; background:#C55A11;"></div></div>
+      <div class="region-stats"><strong>10 подтверждено</strong> из 150</div>
+    </div>
+  </div>
+
+  <!-- CHANNELS -->
+  <div class="section-title">Как мы выходили на связь</div>
+  <div class="channels-row">
+    <div class="channel-card">
+      <div class="channel-icon">📞</div>
+      <div class="channel-num">363</div>
+      <div class="channel-label">Звонков</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-icon">📧</div>
+      <div class="channel-num">100+</div>
+      <div class="channel-label">Email писем</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-icon">📱</div>
+      <div class="channel-num">64</div>
+      <div class="channel-label">Instagram</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-icon">💼</div>
+      <div class="channel-num">20+</div>
+      <div class="channel-label">LinkedIn</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-icon">🎓</div>
+      <div class="channel-num">13</div>
+      <div class="channel-label">Профессоров</div>
+    </div>
+  </div>
+
+  <!-- CONFIRMED -->
+  <div class="section-title">Подтверждённые участники — 37 команд · 36 вузов · 11 стран</div>
+  <div class="confirmed-card">
+    <div class="countries-grid">
+
+      <div class="country-block">
+        <div class="country-flag-name">🇰🇿 Казахстан</div>
+        <div class="uni-item"><span class="uni-dot"></span>Astana Medical University</div>
+        <div class="uni-item"><span class="uni-dot"></span>Карагандинский медицинский университет</div>
+        <div class="uni-item"><span class="uni-dot"></span>Южно-Казахстанская медицинская академия</div>
+        <div class="uni-item"><span class="uni-dot"></span>Кокшетауский университет им. Ш.Уалиханова</div>
+        <div class="uni-item"><span class="uni-dot"></span>Казахский НМУ им. С.Д.Асфендиярова</div>
+        <div class="uni-item"><span class="uni-dot"></span>МУ Семей <span style="font-size:10px;color:#C55A11;">(предварительно)</span></div>
+        <div class="uni-item"><span class="uni-dot"></span>Медицинский университет Астана</div>
+      </div>
+
+      <div class="country-block">
+        <div class="country-flag-name">🇰🇬 Кыргызстан</div>
+        <div class="uni-item"><span class="uni-dot"></span>КГМА Ахунбаева</div>
+        <div class="uni-item"><span class="uni-dot"></span>Asian International University</div>
+        <div class="uni-item"><span class="uni-dot"></span>Высшая школа медицины (Бишкек)</div>
+        <div class="uni-item"><span class="uni-dot"></span>Ошский ГУ — команда 1 (Ош)</div>
+        <div class="uni-item"><span class="uni-dot"></span>Ошский ГУ — команда 2 (2-й кампус)</div>
+        <div class="uni-item"><span class="uni-dot"></span>ISM-IUK (команда Pulse Patrol)</div>
+        <div class="uni-item"><span class="uni-dot"></span>IHSM — кампус 1</div>
+        <div class="uni-item"><span class="uni-dot"></span>IHSM — кампус 2</div>
+        <div style="margin-top:12px;">
+          <div class="country-flag-name">🇹🇯 Таджикистан</div>
+          <div class="uni-item"><span class="uni-dot"></span>Avicenna Tajik State Medical University</div>
+          <div class="uni-item"><span class="uni-dot"></span>Хатлонский ГМУ</div>
+        </div>
+      </div>
+
+      <div class="country-block">
+        <div class="country-flag-name">🇷🇺 Россия</div>
+        <div class="uni-item"><span class="uni-dot"></span>Сеченовский университет</div>
+        <div class="uni-item"><span class="uni-dot"></span>Крымский Федеральный Университет</div>
+        <div class="uni-item"><span class="uni-dot"></span>МГУ им. М.В. Ломоносова</div>
+        <div class="uni-item"><span class="uni-dot"></span>СПбГПМУ (Педиатрический)</div>
+        <div class="uni-item"><span class="uni-dot"></span>РНИМУ им. Н.И. Пирогова</div>
+      </div>
+
+      <div class="country-block">
+        <div class="country-flag-name">🇺🇿 Узбекистан</div>
+        <div class="uni-item"><span class="uni-dot"></span>Osiyo Xalqaro Universiteti (OXU)</div>
+        <div class="uni-item"><span class="uni-dot"></span>Central Asian Medical University</div>
+        <div class="uni-item"><span class="uni-dot"></span>Kimyo International University (KIUT)</div>
+        <div class="uni-item"><span class="uni-dot"></span>Термезский филиал ТГМУ (Махаон)</div>
+        <div style="margin-top:12px;">
+          <div class="country-flag-name">🇬🇪 Грузия</div>
+          <div class="uni-item"><span class="uni-dot"></span>New Vision University</div>
+          <div class="uni-item"><span class="uni-dot"></span>Tbilisi State Medical University</div>
+        </div>
+      </div>
+
+      <div class="country-block">
+        <div class="country-flag-name">🇮🇩 Индонезия</div>
+        <div class="uni-item"><span class="uni-dot"></span>Hasanuddin University</div>
+        <div class="uni-item"><span class="uni-dot"></span>Universitas Airlangga</div>
+        <div style="margin-top:12px;">
+          <div class="country-flag-name">🇮🇷 Иран</div>
+          <div class="uni-item"><span class="uni-dot"></span>Isfahan University of Medical Sciences</div>
+          <div class="uni-item"><span class="uni-dot"></span>Shahid Beheshti University of Medical Sciences</div>
+        </div>
+      </div>
+
+      <div class="country-block">
+        <div class="country-flag-name">🇹🇷 Турция</div>
+        <div class="uni-item"><span class="uni-dot"></span>Karadeniz Technical University</div>
+        <div style="margin-top:12px;">
+          <div class="country-flag-name">🇨🇾 Кипр</div>
+          <div class="uni-item"><span class="uni-dot"></span>Eastern Mediterranean University</div>
+        </div>
+
+        <div class="country-block">
+          <div class="country-flag-name">🇦🇲 Армения</div>
+          <div class="uni-item"><span class="uni-dot"></span>EREBUNI Medical Academy Foundation</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TODAY + NEXT -->
+  <div class="section-title">Сегодня и дальше</div>
+  <div class="two-col">
+    <div class="today-card">
+      <h3>✅ Что сделали сегодня</h3>
+      <div class="today-item">
+        <div class="today-num">12</div>
+        <div class="today-text">Отправлены пригласительные письма в университеты <strong>Швеции, Швейцарии и Дании</strong></div>
+      </div>
+      <div class="today-item">
+        <div class="today-num">2</div>
+        <div class="today-text">Университета <strong>Словакии и Сербии</strong> ответили и запросили письмо — отправлено</div>
+      </div>
+      <div class="today-item">
+        <div class="today-num">12</div>
+        <div class="today-text">Университетов <strong>Хорватии, Сербии, Словакии и Украины</strong> — не ответили, перезвоним</div>
+      </div>
+      <div class="today-item">
+        <div class="today-num">1</div>
+        <div class="today-text">Новая заявка: <strong>Universitas Airlangga</strong> (Индонезия) подтвердила участие</div>
+      </div>
+    </div>
+
+    <div class="next-card">
+      <h3>📌 Следующие шаги</h3>
+      <div class="next-item">
+        <span class="next-tag tag-hot">Срочно</span>
+        <div class="next-text">Перезвонить в университеты Греции (7), Ирландии (5), Нидерландов (5), Венгрии (3)</div>
+      </div>
+      <div class="next-item">
+        <span class="next-tag tag-hot">Срочно</span>
+        <div class="next-text">Германия и Италия — найти английские контакты или email для вузов без связи</div>
+      </div>
+      <div class="next-item">
+        <span class="next-tag tag-plan">В плане</span>
+        <div class="next-text">Ожидаем ответы от Швеции, Дании и Швейцарии — письма отправлены сегодня</div>
+      </div>
+      <div class="next-item">
+        <span class="next-tag tag-plan">В плане</span>
+        <div class="next-text">Профессора в Корее (2) посетят вузы в июле и августе — ожидаем результат</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Медицина будущего 2026 · Central Asian University · Только для внутреннего использования
+  </div>
+
+</div>
+</body>
+</html>
